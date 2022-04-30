@@ -6,28 +6,29 @@ exports.genDoc = (characters, document) => {
   let charactersHash = {};
   let charactersArray = characters.split("");
   for (let i = 0; i < charactersArray.length; i++) {
-    if (charactersHash.hasOwnProperty(charactersArray[i])) {
-      charactersHash[charactersArray[i]] += 1;
+    let char = charactersArray[i] != " " ? charactersArray[i] : "space";
+    if (charactersHash.hasOwnProperty(char)) {
+      charactersHash[char] += 1;
     } else {
-      charactersHash[charactersArray[i]] = 1;
+      charactersHash[char] = 1;
     }
   }
 
   let documentHash = {};
   let documentCharArray = document.split("");
   for (let i = 0; i < documentCharArray.length; i++) {
-    if (documentHash.hasOwnProperty(documentCharArray[i])) {
-      documentHash[documentCharArray[i]] += 1;
+    let char = documentCharArray[i] != " " ? documentCharArray[i] : "space";
+    if (documentHash.hasOwnProperty(char)) {
+      documentHash[char] += 1;
     } else {
-      documentHash[documentCharArray[i]] = 1;
+      documentHash[char] = 1;
     }
   }
 
-  let docAllChars = document.split("");
-  for (let i = 0; i < docAllChars.length; i++) {
+  for (const key in documentHash) {
     if (
-      !charactersHash.hasOwnProperty(docAllChars[i]) &&
-      documentHash[docAllChars[i]] != charactersHash[docAllChars[i]]
+      !charactersHash.hasOwnProperty(key) ||
+      documentHash[key] > charactersHash[key]
     ) {
       return false;
     }

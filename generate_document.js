@@ -2,41 +2,24 @@ exports.genDoc = (characters, document) => {
   if (document == "") {
     return true;
   }
+
   let charactersHash = {};
-  let charactersArray = characters.split(" ");
-  charactersHash["spaces"] = charactersArray.length - 1;
+  let charactersArray = characters.split("");
   for (let i = 0; i < charactersArray.length; i++) {
-    if (charactersArray[i] == "") {
-      charactersHash.spaces += 1;
+    if (charactersHash.hasOwnProperty(charactersArray[i])) {
+      charactersHash[charactersArray[i]] += 1;
     } else {
-      let charArray = charactersArray[i].split("");
-      for (let j = 0; j < charArray.length; j++) {
-        if (charactersHash.hasOwnProperty(charArray[j])) {
-          charactersHash[charArray[j]] += 1;
-        } else {
-          charactersHash[charArray[j]] = 1;
-        }
-      }
+      charactersHash[charactersArray[i]] = 1;
     }
   }
 
   let documentHash = {};
-  let documentsArray = document.split(" ");
-
-  documentHash["spaces"] = documentsArray.length;
-
-  for (let i = 0; i < documentsArray.length; i++) {
-    if (documentsArray[i] == "") {
-      documentHash.spaces += 1;
+  let documentCharArray = document.split("");
+  for (let i = 0; i < documentCharArray.length; i++) {
+    if (documentHash.hasOwnProperty(documentCharArray[i])) {
+      documentHash[documentCharArray[i]] += 1;
     } else {
-      let charArray = documentsArray[i].split("");
-      for (let j = 0; j < charArray.length; j++) {
-        if (documentHash.hasOwnProperty(charArray[j])) {
-          documentHash[charArray[j]] += 1;
-        } else {
-          documentHash[charArray[j]] = 1;
-        }
-      }
+      documentHash[documentCharArray[i]] = 1;
     }
   }
 

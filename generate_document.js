@@ -6,7 +6,7 @@ exports.genDoc = (characters, document) => {
   let charactersHash = {};
   let charactersArray = characters.split("");
   for (let i = 0; i < charactersArray.length; i++) {
-    let char = charactersArray[i] != " " ? charactersArray[i] : "space";
+    let char = charactersArray[i];
     if (charactersHash.hasOwnProperty(char)) {
       charactersHash[char] += 1;
     } else {
@@ -17,7 +17,7 @@ exports.genDoc = (characters, document) => {
   let documentHash = {};
   let documentCharArray = document.split("");
   for (let i = 0; i < documentCharArray.length; i++) {
-    let char = documentCharArray[i] != " " ? documentCharArray[i] : "space";
+    let char = documentCharArray[i];
     if (documentHash.hasOwnProperty(char)) {
       documentHash[char] += 1;
     } else {

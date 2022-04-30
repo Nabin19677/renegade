@@ -42,7 +42,6 @@ exports.genDoc = (characters, document) => {
 
   let docAllChars = document.split("");
   for (let i = 0; i < docAllChars.length; i++) {
-    console.log(documentHash[docAllChars[i]], charactersHash[docAllChars[i]]);
     if (
       !charactersHash.hasOwnProperty(docAllChars[i]) &&
       documentHash[docAllChars[i]] != charactersHash[docAllChars[i]]

@@ -20,18 +20,36 @@ exports.genDoc = (characters, document) => {
     }
   }
 
+  let documentHash = {};
+  let documentsArray = document.split(" ");
+
+  documentHash["spaces"] = documentsArray.length;
+
+  for (let i = 0; i < documentsArray.length; i++) {
+    if (documentsArray[i] == "") {
+      documentHash.spaces += 1;
+    } else {
+      let charArray = documentsArray[i].split("");
+      for (let j = 0; j < charArray.length; j++) {
+        if (documentHash.hasOwnProperty(charArray[j])) {
+          documentHash[charArray[j]] += 1;
+        } else {
+          documentHash[charArray[j]] = 1;
+        }
+      }
+    }
+  }
+
   let docAllChars = document.split("");
-  console.log(docAllChars);
   for (let i = 0; i < docAllChars.length; i++) {
-    console.log(docAllChars[i], charactersHash[docAllChars[i]]);
+    console.log(documentHash[docAllChars[i]], charactersHash[docAllChars[i]]);
     if (
       !charactersHash.hasOwnProperty(docAllChars[i]) &&
-      docAllChars[i] == charactersHash[docAllChars[i]]
+      documentHash[docAllChars[i]] != charactersHash[docAllChars[i]]
     ) {
       return false;
     }
   }
 
-  console.log("End");
   return true;
 };

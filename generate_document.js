@@ -7,11 +7,9 @@ exports.genDoc = (characters, document) => {
   let charactersArray = characters.split("");
   for (let i = 0; i < charactersArray.length; i++) {
     let char = charactersArray[i];
-    if (charactersHash.hasOwnProperty(char)) {
-      charactersHash[char] += 1;
-    } else {
-      charactersHash[char] = 1;
-    }
+    charactersHash[char] = charactersHash.hasOwnProperty(char)
+      ? ++charactersHash[char]
+      : 1;
   }
 
   let documentCharArray = document.split("");

@@ -3,17 +3,14 @@ exports.genDoc = (characters, document) => {
     return true;
   }
 
-  let charactersHash = {};
-  let charactersArray = characters.split("");
-  for (let i = 0; i < charactersArray.length; i++) {
-    let char = charactersArray[i];
+  const charactersHash = {};
+  for (let char of characters.split("")) {
     charactersHash[char] = charactersHash.hasOwnProperty(char)
       ? ++charactersHash[char]
       : 1;
   }
 
-  let documentCharArray = document.split("");
-  for (const key of documentCharArray) {
+  for (let key of document.split("")) {
     if (!charactersHash.hasOwnProperty(key) || charactersHash[key] <= 0) {
       return false;
     } else {

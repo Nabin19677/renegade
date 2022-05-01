@@ -14,23 +14,12 @@ exports.genDoc = (characters, document) => {
     }
   }
 
-  let documentHash = {};
   let documentCharArray = document.split("");
-  for (let i = 0; i < documentCharArray.length; i++) {
-    let char = documentCharArray[i];
-    if (documentHash.hasOwnProperty(char)) {
-      documentHash[char] += 1;
-    } else {
-      documentHash[char] = 1;
-    }
-  }
-
-  for (const key in documentHash) {
-    if (
-      !charactersHash.hasOwnProperty(key) ||
-      documentHash[key] > charactersHash[key]
-    ) {
+  for (const key of documentCharArray) {
+    if (!charactersHash.hasOwnProperty(key) || charactersHash[key] <= 0) {
       return false;
+    } else {
+      charactersHash[key] -= 1;
     }
   }
 

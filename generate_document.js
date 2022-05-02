@@ -14,7 +14,7 @@ exports.genDoc = (characters, document) => {
     if (!charactersHash.hasOwnProperty(key) || charactersHash[key] <= 0) {
       return false;
     } else {
-      charactersHash[key] -= 1;
+      --charactersHash[key];
     }
   }
 
